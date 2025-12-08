@@ -1,0 +1,210 @@
+{ config, lib, pkgs, ... }:
+
+let
+  modifier = "Mod4";
+  terminal = "alacritty";
+  menu = "wofi --show drun";
+in
+{
+  wayland.windowManager.sway = {
+    enable = true;
+    systemd.enable = true;
+    wrapperFeatures.gtk = true;
+
+    config = {
+      inherit modifier terminal menu;
+
+      bars = [{
+        command = "${pkgs.waybar}/bin/waybar";
+      }];
+
+      startup = [
+        { command = "mako"; }
+      ];
+
+      input = {
+        "type:keyboard" = {
+          xkb_layout = "us";
+          xkb_options = "ctrl:nocaps";
+          repeat_delay = "300";
+          repeat_rate = "30";
+        };
+
+        "type:touchpad" = {
+          tap = "enabled";
+          natural_scroll = "enabled";
+          dwt = "enabled";
+          middle_emulation = "enabled";
+        };
+      };
+
+      output = {
+        "*" = {
+          bg = "#1e1e2e solid_color";
+        };
+      };
+
+      gaps = {
+        inner = 5;
+        outer = 5;
+        smartGaps = true;
+      };
+
+      window = {
+        titlebar = false;
+        border = 2;
+      };
+
+      colors = {
+        focused = {
+          border = "#89b4fa";
+          background = "#1e1e2e";
+          text = "#cdd6f4";
+          indicator = "#89b4fa";
+          childBorder = "#89b4fa";
+        };
+        unfocused = {
+          border = "#45475a";
+          background = "#1e1e2e";
+          text = "#bac2de";
+          indicator = "#45475a";
+          childBorder = "#45475a";
+        };
+        urgent = {
+          border = "#f38ba8";
+          background = "#1e1e2e";
+          text = "#cdd6f4";
+          indicator = "#f38ba8";
+          childBorder = "#f38ba8";
+        };
+      };
+
+      keybindings = lib.mkOptionDefault {
+        "${modifier}+Return" = "exec ${terminal}";
+        "${modifier}+d" = "exec ${menu}";
+        "${modifier}+Shift+q" = "kill";
+
+        # focus
+        "${modifier}+h" = "focus left";
+        "${modifier}+j" = "focus down";
+        "${modifier}+k" = "focus up";
+        "${modifier}+l" = "focus right";
+
+        # move
+        "${modifier}+Shift+h" = "move left";
+        "${modifier}+Shift+j" = "move down";
+        "${modifier}+Shift+k" = "move up";
+        "${modifier}+Shift+l" = "move right";
+
+        # resize
+        "${modifier}+r" = "mode resize";
+
+        # split
+        "${modifier}+b" = "splith";
+        "${modifier}+v" = "splitv";
+
+        # layout
+        "${modifier}+s" = "layout stacking";
+        "${modifier}+w" = "layout tabbed";
+        "${modifier}+e" = "layout toggle split";
+        "${modifier}+f" = "fullscreen toggle";
+        "${modifier}+Shift+space" = "floating toggle";
+        "${modifier}+space" = "focus mode_toggle";
+        "${modifier}+a" = "focus parent";
+
+        # workspaces
+        "${modifier}+1" = "workspace number 1";
+        "${modifier}+2" = "workspace number 2";
+        "${modifier}+3" = "workspace number 3";
+        "${modifier}+4" = "workspace number 4";
+        "${modifier}+5" = "workspace number 5";
+        "${modifier}+6" = "workspace number 6";
+        "${modifier}+7" = "workspace number 7";
+        "${modifier}+8" = "workspace number 8";
+        "${modifier}+9" = "workspace number 9";
+        "${modifier}+0" = "workspace number 10";
+
+        # move to workspace
+        "${modifier}+Shift+1" = "move container to workspace number 1";
+        "${modifier}+Shift+2" = "move container to workspace number 2";
+        "${modifier}+Shift+3" = "move container to workspace number 3";
+        "${modifier}+Shift+4" = "move container to workspace number 4";
+        "${modifier}+Shift+5" = "move container to workspace number 5";
+        "${modifier}+Shift+6" = "move container to workspace number 6";
+        "${modifier}+Shift+7" = "move container to workspace number 7";
+        "${modifier}+Shift+8" = "move container to workspace number 8";
+        "${modifier}+Shift+9" = "move container to workspace number 9";
+        "${modifier}+Shift+0" = "move container to workspace number 10";
+
+        # scratchpad
+        "${modifier}+Shift+minus" = "move scratchpad";
+        "${modifier}+minus" = "scratchpad show";
+
+        # reload/exit
+        "${modifier}+Shift+c" = "reload";
+        "${modifier}+Shift+e" = "exec swaynag -t warning -m 'Exit sway?' -B 'Yes' 'swaymsg exit'";
+
+        # lock screen
+        "${modifier}+Ctrl+l" = "exec swaylock -f -c 1e1e2e";
+
+        # screenshots
+        "Print" = "exec grim - | wl-copy";
+        "Shift+Print" = "exec grim -g \"$(slurp)\" - | wl-copy";
+        "${modifier}+Print" = "exec grim ~/Pictures/screenshot-$(date +%Y%m%d-%H%M%S).png";
+        "${modifier}+Shift+Print" = "exec grim -g \"$(slurp)\" ~/Pictures/screenshot-$(date +%Y%m%d-%H%M%S).png";
+
+        # volume
+        "XF86AudioRaiseVolume" = "exec pamixer -i 5";
+        "XF86AudioLowerVolume" = "exec pamixer -d 5";
+        "XF86AudioMute" = "exec pamixer -t";
+
+        # brightness
+        "XF86MonBrightnessUp" = "exec brightnessctl set +10%";
+        "XF86MonBrightnessDown" = "exec brightnessctl set 10%-";
+
+        # media
+        "XF86AudioPlay" = "exec playerctl play-pause";
+        "XF86AudioNext" = "exec playerctl next";
+        "XF86AudioPrev" = "exec playerctl previous";
+      };
+
+      modes = {
+        resize = {
+          h = "resize shrink width 10 px";
+          j = "resize grow height 10 px";
+          k = "resize shrink height 10 px";
+          l = "resize grow width 10 px";
+          Left = "resize shrink width 10 px";
+          Down = "resize grow height 10 px";
+          Up = "resize shrink height 10 px";
+          Right = "resize grow width 10 px";
+          Return = "mode default";
+          Escape = "mode default";
+        };
+      };
+    };
+
+    extraConfig = ''
+      # NVIDIA-specific
+      exec_always export WLR_NO_HARDWARE_CURSORS=1
+
+      # idle management
+      exec swayidle -w \
+        timeout 300 'swaylock -f -c 1e1e2e' \
+        timeout 600 'swaymsg "output * power off"' \
+        resume 'swaymsg "output * power on"' \
+        before-sleep 'swaylock -f -c 1e1e2e'
+    '';
+  };
+
+  home.packages = with pkgs; [
+    brightnessctl
+    grim
+    slurp
+    swaylock
+    swayidle
+    wl-clipboard
+    wf-recorder
+    libnotify
+  ];
+}
