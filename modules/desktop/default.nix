@@ -1,7 +1,7 @@
 {
   imports = [
     ./sway.nix
-    ./greetd.nix
+    ./seatd.nix
     ./audio.nix
     ./fonts.nix
   ];
