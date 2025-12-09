@@ -20,6 +20,7 @@ in
 
       startup = [
         { command = "mako"; }
+        { command = "wl-paste -t text -n --watch clipman store --no-persist --max-items=300"; }
       ];
 
       input = {
@@ -147,6 +148,9 @@ in
         # lock screen
         "${modifier}+Ctrl+l" = "exec swaylock -f -c 1e1e2e";
 
+        # clipboard
+        "${modifier}+p" = "exec clipman pick --tool=wofi --tool-args=\"--dmenu\"";
+
         # screenshots
         "Print" = "exec grim - | wl-copy";
         "Shift+Print" = "exec grim -g \"$(slurp)\" - | wl-copy";
@@ -199,6 +203,7 @@ in
 
   home.packages = with pkgs; [
     brightnessctl
+    clipman
     grim
     slurp
     swaylock
