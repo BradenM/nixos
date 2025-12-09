@@ -69,6 +69,12 @@
       df = "df -h";
       du = "du -h";
       free = "free -h";
+
+      # clipboard
+      cpwd = "pwd | wl-copy -n";
+      ppwd = "cd $(wl-paste)";
+      wcp = "wl-copy -n";
+      wpp = "wl-paste -n";
     };
 
     initContent = ''
