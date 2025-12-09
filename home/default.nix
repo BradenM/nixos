@@ -24,6 +24,9 @@
     ./apps/git.nix
     ./apps/dev-tools.nix
     ./apps/jetbrains.nix
+
+    # scripts
+    ./scripts
   ];
 
   home = {
