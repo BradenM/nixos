@@ -54,8 +54,19 @@
     source = pkgs.fetchFromGitHub {
       owner = "AstroNvim";
       repo = "template";
-      rev = "main";
-      sha256 = "sha256-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=";
+      rev = "89ebfd35d6415634d82cc6f2991bf66c842872d0";
+      sha256 = "sha256-nxPdSG4TMpNwB8d4s3Iw/uULZgx04HBYf+QSwZXQyH8=";
+    };
+    recursive = true;
+  };
+
+  # pre-install lazy.nvim so it doesn't need to bootstrap via git
+  xdg.dataFile."nvim/lazy/lazy.nvim" = {
+    source = pkgs.fetchFromGitHub {
+      owner = "folke";
+      repo = "lazy.nvim";
+      rev = "v11.17.5";
+      sha256 = "sha256-h5404njTAfqMJFQ3MAr2PWSbV81eS4aIs0cxAXkT0EM=";
     };
     recursive = true;
   };
