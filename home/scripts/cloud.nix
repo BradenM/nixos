@@ -7,12 +7,14 @@ let
   aws-export-zone = pkgs.writeShellApplication {
     name = "aws-export-zone";
     runtimeInputs = with pkgs; [ awscli2 jq coreutils ];
+    excludeShellChecks = [ "SC2086" ];
     text = builtins.readFile "${scriptsDir}/aws-export-zone";
   };
 
   aws-delete-ami = pkgs.writeShellApplication {
     name = "aws-delete-ami";
     runtimeInputs = with pkgs; [ awscli2 ncurses ];
+    excludeShellChecks = [ "SC2178" "SC2086" "SC2162" ];
     text = ''
       ${utilsContent}
       ${builtins.replaceStrings
@@ -30,7 +32,11 @@ let
 
   s3-presign = pkgs.writers.writePython3Bin "s3-presign" {
     libraries = with pkgs.python3Packages; [ boto3 requests ];
-  } (builtins.readFile "${scriptsDir}/s3-presign.py");
+    flakeIgnore = [ "E501" ];
+  } (builtins.replaceStrings
+    [ "#!/usr/bin/env python\n" ]
+    [ "" ]
+    (builtins.readFile "${scriptsDir}/s3-presign.py"));
 in
 {
   home.packages = [

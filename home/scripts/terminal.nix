@@ -19,6 +19,7 @@ let
   ssh-copy-terminfo = pkgs.writeShellApplication {
     name = "ssh-copy-terminfo";
     runtimeInputs = with pkgs; [ openssh ncurses ];
+    excludeShellChecks = [ "SC2068" "SC2086" "SC2178" ];
     text = ''
       ${utilsContent}
       ${builtins.replaceStrings

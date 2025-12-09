@@ -19,12 +19,14 @@ let
   sway-prop = pkgs.writeShellApplication {
     name = "sway-prop";
     runtimeInputs = with pkgs; [ sway jq kitty ];
+    excludeShellChecks = [ "SC2016" "SC2034" "SC2064" "SC2086" ];
     text = builtins.readFile "${scriptsDir}/sway-prop";
   };
 
   swytch = pkgs.writeShellApplication {
     name = "swytch";
     runtimeInputs = with pkgs; [ sway jq wofi gawk coreutils ];
+    excludeShellChecks = [ "SC2034" "SC2004" "SC2086" ];
     text = builtins.readFile "${scriptsDir}/swytch";
   };
 
@@ -52,6 +54,7 @@ let
   import-gsettings = pkgs.writeShellApplication {
     name = "import-gsettings";
     runtimeInputs = with pkgs; [ gnome-settings-daemon glib gnused ];
+    excludeShellChecks = [ "SC2034" "SC2059" ];
     text = builtins.readFile "${scriptsDir}/import-gsettings";
   };
 

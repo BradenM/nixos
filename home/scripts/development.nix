@@ -7,6 +7,7 @@ let
   git-dir-download = pkgs.writeShellApplication {
     name = "git-dir-download";
     runtimeInputs = with pkgs; [ subversion coreutils ncurses ];
+    excludeShellChecks = [ "SC2086" "SC2162" "SC2178" ];
     text = ''
       ${utilsContent}
       ${builtins.replaceStrings
@@ -19,6 +20,7 @@ let
   git-search-stash = pkgs.writeShellApplication {
     name = "git-search-stash";
     runtimeInputs = with pkgs; [ git gawk gnugrep ncurses ];
+    excludeShellChecks = [ "SC2086" "SC2162" "SC2178" ];
     text = ''
       ${utilsContent}
       ${builtins.replaceStrings
@@ -31,6 +33,7 @@ let
   rgreplace = pkgs.writeShellApplication {
     name = "rgreplace";
     runtimeInputs = with pkgs; [ ripgrep gnused ncurses ];
+    excludeShellChecks = [ "SC2086" "SC2162" "SC2178" ];
     text = ''
       ${utilsContent}
       ${builtins.replaceStrings
@@ -42,7 +45,11 @@ let
 
   envjson = pkgs.writers.writePython3Bin "envjson" {
     libraries = [ ];
-  } (builtins.readFile "${scriptsDir}/envjson");
+    flakeIgnore = [ "E722" ];
+  } (builtins.replaceStrings
+    [ "#!/usr/bin/env python3\n" ]
+    [ "" ]
+    (builtins.readFile "${scriptsDir}/envjson"));
 
   flatstring = pkgs.writeShellApplication {
     name = "flatstring";

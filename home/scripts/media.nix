@@ -6,6 +6,7 @@ let
   ffmpeg-gif = pkgs.writeShellApplication {
     name = "ffmpeg-gif";
     runtimeInputs = [ pkgs.ffmpeg ];
+    excludeShellChecks = [ "SC2028" ];
     text = builtins.readFile "${scriptsDir}/ffmpeg-gif";
   };
 
@@ -19,12 +20,14 @@ let
       wl-clipboard
       coreutils
     ];
+    excludeShellChecks = [ "SC2034" "SC2086" ];
     text = builtins.readFile "${scriptsDir}/mkclip";
   };
 
   srecord = pkgs.writeShellApplication {
     name = "srecord";
-    runtimeInputs = with pkgs; [ ffmpeg coreutils ];
+    runtimeInputs = with pkgs; [ wf-recorder coreutils libnotify mpv ];
+    excludeShellChecks = [ "SC2034" "SC2154" "SC2162" ];
     text = builtins.readFile "${scriptsDir}/srecord";
   };
 

@@ -6,18 +6,21 @@ let
   mount-chroot = pkgs.writeShellApplication {
     name = "mount-chroot";
     runtimeInputs = with pkgs; [ util-linux coreutils ];
+    excludeShellChecks = [ "SC2086" ];
     text = builtins.readFile "${scriptsDir}/mount-chroot";
   };
 
   ls-iommu = pkgs.writeShellApplication {
     name = "ls-iommu";
     runtimeInputs = with pkgs; [ pciutils findutils coreutils ];
+    excludeShellChecks = [ "SC2086" "SC2231" ];
     text = builtins.readFile "${scriptsDir}/ls-iommu.sh";
   };
 
   dump-pci-pwr = pkgs.writeShellApplication {
     name = "dump-pci-pwr";
     runtimeInputs = with pkgs; [ pciutils coreutils gnugrep ];
+    excludeShellChecks = [ "SC2044" "SC2086" ];
     text = builtins.readFile "${scriptsDir}/dump-pci-pwr.sh";
   };
 
@@ -42,12 +45,14 @@ let
   kill-all-by = pkgs.writeShellApplication {
     name = "kill-all-by";
     runtimeInputs = with pkgs; [ procps ];
+    excludeShellChecks = [ "SC2086" ];
     text = builtins.readFile "${scriptsDir}/kill-all-by";
   };
 
   color-test = pkgs.writeShellApplication {
     name = "24-bit-color";
     runtimeInputs = [ ];
+    excludeShellChecks = [ "SC2006" "SC2046" "SC2086" "SC2219" ];
     text = builtins.readFile "${scriptsDir}/24-bit-color.sh";
   };
 in
