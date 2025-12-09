@@ -71,7 +71,7 @@
       free = "free -h";
     };
 
-    initExtra = ''
+    initContent = ''
       # editor
       export EDITOR="nvim"
       export VISUAL="nvim"
