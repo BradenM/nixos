@@ -3,20 +3,13 @@
 {
   programs.git = {
     enable = true;
-    userName = "Braden Mars";
-    userEmail = "bradenmars@bradenmars.me";
 
-    delta = {
-      enable = true;
-      options = {
-        navigate = true;
-        side-by-side = true;
-        line-numbers = true;
-        syntax-theme = "Catppuccin Mocha";
+    settings = {
+      user = {
+        name = "Braden Mars";
+        email = "bradenmars@bradenmars.me";
       };
-    };
 
-    extraConfig = {
       init.defaultBranch = "main";
       pull.rebase = true;
       push.autoSetupRemote = true;
@@ -38,22 +31,22 @@
       };
 
       credential.helper = "store";
-    };
 
-    aliases = {
-      st = "status";
-      co = "checkout";
-      br = "branch";
-      ci = "commit";
-      ca = "commit --amend";
-      unstage = "reset HEAD --";
-      last = "log -1 HEAD";
-      lg = "log --oneline --graph --decorate";
-      lga = "log --oneline --graph --decorate --all";
-      df = "diff";
-      dfs = "diff --staged";
-      undo = "reset --soft HEAD^";
-      wip = "!git add -A && git commit -m 'WIP'";
+      alias = {
+        st = "status";
+        co = "checkout";
+        br = "branch";
+        ci = "commit";
+        ca = "commit --amend";
+        unstage = "reset HEAD --";
+        last = "log -1 HEAD";
+        lg = "log --oneline --graph --decorate";
+        lga = "log --oneline --graph --decorate --all";
+        df = "diff";
+        dfs = "diff --staged";
+        undo = "reset --soft HEAD^";
+        wip = "!git add -A && git commit -m 'WIP'";
+      };
     };
 
     ignores = [
@@ -78,6 +71,17 @@
       "venv/"
       ".venv/"
     ];
+  };
+
+  programs.delta = {
+    enable = true;
+    enableGitIntegration = true;
+    options = {
+      navigate = true;
+      side-by-side = true;
+      line-numbers = true;
+      syntax-theme = "Catppuccin Mocha";
+    };
   };
 
   programs.lazygit = {
