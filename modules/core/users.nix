@@ -12,10 +12,13 @@
       "video"
       "audio"
       "input"
+      "seat"
     ];
     hashedPasswordFile = "/persist/passwords/braden";
     shell = pkgs.zsh;
   };
+
+  users.users.root.hashedPasswordFile = "/persist/passwords/root";
 
   programs.zsh.enable = true;
 
