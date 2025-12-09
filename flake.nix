@@ -17,6 +17,11 @@
     impermanence.url = "github:nix-community/impermanence";
 
     nixos-hardware.url = "github:NixOS/nixos-hardware/master";
+
+    dotfiles = {
+      url = "github:BradenM/dotfiles";
+      flake = false;
+    };
   };
 
   outputs = { self, nixpkgs, home-manager, disko, impermanence, nixos-hardware, ... }@inputs:
