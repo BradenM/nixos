@@ -1,4 +1,4 @@
-{ config, lib, pkgs, ... }:
+{ config, lib, pkgs, inputs, ... }:
 
 {
   programs.zsh = {
@@ -19,6 +19,16 @@
         "sudo"
         "extract"
         "history"
+        "aws"
+        "python"
+        "pip"
+        "npm"
+        "yarn"
+        "rust"
+        "golang"
+        "helm"
+        "terraform"
+        "ansible"
       ];
     };
 
@@ -38,11 +48,13 @@
       "...." = "cd ../../..";
 
       # modern replacements
-      ls = "eza";
+      ls = "eza --icons --git";
       ll = "eza -la";
       la = "eza -a";
       lt = "eza --tree";
+      l = "ls";
       cat = "bat";
+      rm = "trash";
 
       # git shortcuts
       g = "git";
@@ -52,6 +64,7 @@
       gp = "git push";
       gl = "git pull";
       glog = "git log --oneline --graph";
+      lg = "lazygit";
 
       # editor
       v = "nvim";
@@ -69,15 +82,41 @@
       df = "df -h";
       du = "du -h";
       free = "free -h";
+      c = "clear";
+      j = "z";
+      ssh = "TERM=xterm-256color command ssh";
+      ssha = "eval $(ssh-agent)";
+      cls = ''stat -c "%a %n" *'';
+      errors = "journalctl -b -p err|less";
 
       # clipboard
       cpwd = "pwd | wl-copy -n";
       ppwd = "cd $(wl-paste)";
       wcp = "wl-copy -n";
       wpp = "wl-paste -n";
+      wpick = ''clipman pick --print0 --tool=CUSTOM --tool-args="fzf --prompt 'pick > ' --bind 'tab:up' --cycle --read0"'';
+
+      # ip helpers
+      wanip = "curl -s -X GET https://checkip.amazonaws.com";
+
+      # mise
+      m = "mise";
+      x = "mise exec --";
+      r = "mise run --";
+      dallow = "mise exec direnv -- direnv allow";
+
+      # pnpm
+      p = "pnpm";
+
+      # config shortcuts
+      zshcfg = "$EDITOR ~/.config/zsh";
+      vimrc = "$EDITOR ~/.config/nvim";
+      swaycfg = "$EDITOR ~/.config/sway";
     };
 
-    initContent = ''
+    initContent = let
+      zshCustom = "${inputs.dotfiles}/dotfiles/oh-my-zsh/custom";
+    in ''
       # editor
       export EDITOR="nvim"
       export VISUAL="nvim"
@@ -92,6 +131,18 @@
       # completion settings
       zstyle ':completion:*' menu select
       zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}'
+
+      # source custom functions from dotfiles
+      source "${zshCustom}/aws.zsh"
+      source "${zshCustom}/io.zsh"
+      source "${zshCustom}/sway.zsh"
+      source "${zshCustom}/git.zsh"
+      source "${zshCustom}/utils.zsh"
+
+      # inline functions from aliases.zsh
+      takeown() { sudo -E chown -R "''${USER}:''${USER}" "$@"; }
+      eshell() { xdg-open "https://explainshell.com/explain?cmd=$1"; }
+      timeit() { /usr/bin/time -f "| Real: %es | User: %Us | Sys: %Ss |" "$@"; }
     '';
   };
 }
