@@ -19,8 +19,29 @@
 
     extraSessionCommands = ''
       export WLR_NO_HARDWARE_CURSORS=1
-      export NIXOS_OZONE_WL=1
     '';
+  };
+
+  # wayland environment variables
+  environment.sessionVariables = {
+    # electron/chromium
+    NIXOS_OZONE_WL = "1";
+    # mozilla
+    MOZ_ENABLE_WAYLAND = "1";
+    MOZ_DBUS_REMOTE = "1";
+    # qt
+    QT_QPA_PLATFORM = "wayland";
+    QT_WAYLAND_DISABLE_WINDOWDECORATION = "1";
+    # sdl
+    SDL_VIDEODRIVER = "wayland";
+    # clutter
+    CLUTTER_BACKEND = "wayland";
+    # xdg
+    XDG_CURRENT_DESKTOP = "sway";
+    # wlroots
+    WLR_NO_HARDWARE_CURSORS = "1";
+    # java
+    _JAVA_AWT_WM_NONREPARENTING = "1";
   };
 
   security.pam.services.swaylock = {};
