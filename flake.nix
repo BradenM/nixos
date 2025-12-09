@@ -36,6 +36,7 @@
               useGlobalPkgs = true;
               useUserPackages = true;
               extraSpecialArgs = { inherit inputs; };
+              sharedModules = [ inputs.impermanence.homeManagerModules.impermanence ];
               users.braden = import ./home;
             };
           }
