@@ -64,7 +64,6 @@
       gp = "git push";
       gl = "git pull";
       glog = "git log --oneline --graph";
-      lg = "lazygit";
 
       # editor
       v = "nvim";
