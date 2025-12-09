@@ -44,10 +44,40 @@
           ./hosts/${hostName}
         ];
       };
+      pkgs = nixpkgs.legacyPackages.${system};
     in
     {
       nixosConfigurations = {
         braden-serval-ws = mkHost "braden-serval-ws";
+        vm = mkHost "vm";
+
+        # ISO for live testing (no disko/impermanence, but with home-manager)
+        iso = nixpkgs.lib.nixosSystem {
+          inherit system;
+          specialArgs = { inherit inputs; };
+          modules = [
+            home-manager.nixosModules.home-manager
+            {
+              home-manager = {
+                useGlobalPkgs = true;
+                useUserPackages = true;
+                extraSpecialArgs = { inherit inputs; };
+                users.braden = import ./home;
+              };
+            }
+            ./hosts/iso
+          ];
+        };
+      };
+
+      packages.${system} = {
+        vm = self.nixosConfigurations.vm.config.system.build.vm;
+        iso = self.nixosConfigurations.iso.config.system.build.isoImage;
+      };
+
+      apps.${system}.vm = {
+        type = "app";
+        program = "${self.packages.${system}.vm}/bin/run-nixos-vm-vm";
       };
     };
 }
