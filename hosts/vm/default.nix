@@ -13,23 +13,21 @@
 
   networking.hostName = "nixos-vm";
 
-  # VM-specific boot configuration
+  # VM-specific boot configuration (disable NVIDIA modules from core/boot.nix)
   boot = {
     loader = {
       systemd-boot.enable = true;
       efi.canTouchEfiVariables = true;
     };
-    kernelPackages = pkgs.linuxPackages_latest;
     initrd.systemd.enable = true;
+    initrd.kernelModules = lib.mkForce [ ];
+    kernelParams = lib.mkForce [ ];
   };
 
   # override user config for VM (simple password instead of file)
   users.users.braden = {
-    isNormalUser = true;
-    description = "Braden Mars";
-    extraGroups = [ "wheel" "networkmanager" "video" "audio" ];
+    hashedPasswordFile = lib.mkForce null;
     initialPassword = "test";
-    shell = pkgs.zsh;
   };
 
   # VirtIO graphics
