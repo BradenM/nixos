@@ -136,6 +136,7 @@
       source "${zshCustom}/io.zsh"
       source "${zshCustom}/sway.zsh"
       source "${zshCustom}/git.zsh"
+      unalias lg 2>/dev/null || true  # remove alias so lazygit module can define lg() function
       source "${zshCustom}/utils.zsh"
 
       # inline functions from aliases.zsh
