@@ -8,6 +8,7 @@
       user = {
         name = "Braden Mars";
         email = "bradenmars@bradenmars.me";
+        signingkey = "EE67D8AA78A257AF!";
       };
 
       init.defaultBranch = "main";
@@ -109,6 +110,7 @@
       git = {
         commit = {
             signOff = true;
+            gpgSign = true;
         };
         pagers = [{
           colorArg = "always";
