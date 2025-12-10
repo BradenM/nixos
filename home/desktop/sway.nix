@@ -21,14 +21,16 @@ in
       startup = [
         { command = "mako"; }
         { command = "wl-paste -t text -n --watch clipman store --no-persist --max-items=300"; }
+        { command = "autotiling-rs"; always = true; }
+        { command = "swaywsr"; always = true; }
       ];
 
       input = {
         "type:keyboard" = {
           xkb_layout = "us";
-          xkb_options = "ctrl:nocaps";
+          xkb_options = "caps:escape";
           repeat_delay = "300";
-          repeat_rate = "30";
+          repeat_rate = "45";
         };
 
         "type:touchpad" = {
@@ -36,6 +38,10 @@ in
           natural_scroll = "enabled";
           dwt = "enabled";
           middle_emulation = "enabled";
+        };
+
+        "type:pointer" = {
+          accel_profile = "flat";
         };
       };
 
@@ -82,8 +88,11 @@ in
 
       keybindings = lib.mkOptionDefault {
         "${modifier}+Return" = "exec ${terminal}";
+        "${modifier}+Shift+Return" = "exec ${terminal} --class AlacrittyFloat";
         "${modifier}+d" = "exec ${menu}";
         "${modifier}+Shift+q" = "kill";
+        "${modifier}+g" = "exec brave";
+        "${modifier}+Shift+g" = "exec firefox";
 
         # focus
         "${modifier}+h" = "focus left";
@@ -112,8 +121,10 @@ in
         "${modifier}+Shift+space" = "floating toggle";
         "${modifier}+space" = "focus mode_toggle";
         "${modifier}+a" = "focus parent";
+        "${modifier}+Shift+a" = "focus child";
 
         # workspaces
+        "${modifier}+u" = "workspace back_and_forth";
         "${modifier}+1" = "workspace number 1";
         "${modifier}+2" = "workspace number 2";
         "${modifier}+3" = "workspace number 3";
@@ -170,6 +181,12 @@ in
         "XF86AudioPlay" = "exec playerctl play-pause";
         "XF86AudioNext" = "exec playerctl next";
         "XF86AudioPrev" = "exec playerctl previous";
+        "${modifier}+n" = "exec playerctl play-pause";
+        "${modifier}+Shift+n" = "exec playerctl next";
+        "${modifier}+Ctrl+n" = "exec playerctl previous";
+
+        # notifications
+        "${modifier}+Shift+p" = "exec makoctl dismiss --all";
       };
 
       modes = {
@@ -198,18 +215,48 @@ in
         timeout 600 'swaymsg "output * power off"' \
         resume 'swaymsg "output * power on"' \
         before-sleep 'swaylock -f -c 1e1e2e'
+
+      # floating windows
+      for_window [app_id="AlacrittyFloat"] floating enable
+      for_window [instance="mpv"] floating enable
+      for_window [app_id="mpv"] floating enable
+      for_window [app_id="scrcpy"] floating enable
+      for_window [app_id="blueberry.py"] floating enable
+      for_window [app_id="dragon-drop"] floating enable, sticky enable
+      for_window [app_id="pavucontrol"] floating enable
+      for_window [title="Save File"] floating enable
+      for_window [title="Open File"] floating enable
+
+      # picture-in-picture
+      for_window [title="Picture-in-Picture"] floating enable, sticky enable
+
+      # firefox sharing indicator - hide
+      for_window [title="Firefox — Sharing Indicator"] floating enable, sticky enable, move scratchpad
+
+      # idle inhibition for video apps
+      for_window [class="Microsoft Teams - Preview"] inhibit_idle fullscreen
+      for_window [class="Chromium-browser"] inhibit_idle fullscreen
+      for_window [class="Google-chrome"] inhibit_idle fullscreen
+      for_window [app_id="firefox"] inhibit_idle fullscreen
+      for_window [class="Brave-browser"] inhibit_idle fullscreen
+
+      # prevent apps from grabbing all shortcuts
+      seat * shortcuts_inhibitor disable
     '';
   };
 
   home.packages = with pkgs; [
+    autotiling-rs
     brightnessctl
     clipman
     grim
-    slurp
-    swaylock
-    swayidle
-    wl-clipboard
-    wf-recorder
     libnotify
+    playerctl
+    slurp
+    swayidle
+    swaylock
+    swaywsr
+    wf-recorder
+    wl-clipboard
   ];
 }
