@@ -78,7 +78,7 @@
     enableGitIntegration = true;
     options = {
       navigate = true;
-      side-by-side = true;
+      side-by-side = false;
       line-numbers = true;
       syntax-theme = "Catppuccin Mocha";
     };
@@ -87,6 +87,7 @@
   programs.lazygit = {
     enable = true;
     settings = {
+      reporting = "off";
       gui = {
         theme = {
           lightTheme = false;
@@ -102,13 +103,18 @@
         };
         showFileTree = true;
         showRandomTip = false;
-        showCommandLog = false;
+        showCommandLog = true;
+        showIcons = true;
       };
       git = {
-        paging = {
-          colorArg = "always";
-          pager = "delta --dark --paging=never";
+        commit = {
+            signOff = true;
         };
+        pagers = [{
+          colorArg = "always";
+          pager = "delta --dark --paging=never --diff-so-fancy --line-numbers";
+          useConfig = false;
+        }];
       };
     };
   };
