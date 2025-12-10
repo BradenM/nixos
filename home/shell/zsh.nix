@@ -21,6 +21,7 @@
         "history"
         "aws"
         "python"
+        "rsync"
         "pip"
         "npm"
         "yarn"
