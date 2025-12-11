@@ -13,6 +13,8 @@
   ];
 
   networking.hostName = "braden-serval-ws";
+  # for dynamically linked bins
+  programs.nix-ld.enable = true;
 
   system.stateVersion = "25.11";
 }
