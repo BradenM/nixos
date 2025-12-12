@@ -1,6 +1,16 @@
 { config, lib, pkgs, ... }:
 
 {
+  # symlink to default config path so btrbk works without -c flag
+  environment.etc."btrbk/btrbk.conf".source = "/etc/btrbk/snapshots.conf";
+
+  # create snapshots subvolume if it doesn't exist
+  system.activationScripts.btrbk-snapshots-init.text = ''
+    if [ ! -d /mnt/btrfs-root/snapshots ]; then
+      ${pkgs.btrfs-progs}/bin/btrfs subvolume create /mnt/btrfs-root/snapshots
+    fi
+  '';
+
   services.btrbk.instances = {
     snapshots = {
       onCalendar = "hourly";
