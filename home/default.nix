@@ -128,12 +128,16 @@
     # communication
     slack
 
+    # git extras
+    git-extras
+
     # media
     mpv
     imv
 
     # file manager
     pcmanfm
+    trash-cli
 
     # utilities
     gnome-keyring
