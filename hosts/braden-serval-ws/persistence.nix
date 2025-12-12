@@ -68,5 +68,6 @@
     "d /persist/passwords 0700 root root"
     "d /persist/etc 0755 root root"
     "d /persist/var/lib 0755 root root"
+    "L /home/bradenmars - - - - /home/braden"
   ];
 }
