@@ -1,4 +1,4 @@
-{ config, lib, pkgs, ... }:
+{ config, lib, pkgs, osConfig, ... }:
 
 let
   modifier = "Mod4";
@@ -48,6 +48,16 @@ in
       output = {
         "*" = {
           bg = "#1e1e2e solid_color";
+        };
+      } // lib.optionalAttrs (osConfig.networking.hostName == "braden-serval-ws") {
+        "eDP-2" = {
+          pos = "0 0";
+          subpixel = "rgb";
+        };
+        "HDMI-A-1" = {
+          pos = "2560 0";
+          mode = "2560x1440@75Hz";
+          subpixel = "rgb";
         };
       };
 
