@@ -1,8 +1,17 @@
 { config, lib, pkgs, ... }:
 
+let
+  pycharm = pkgs.jetbrains.pycharm-professional.overrideAttrs (old: rec {
+    version = "2025.3";
+    src = pkgs.fetchurl {
+      url = "https://download.jetbrains.com/python/pycharm-professional-${version}.tar.gz";
+      sha256 = "sha256-pBDJxYNO3hY3MyXqIbhQ4wlVfbXZ3Mo2dMr5LqfFvwU=";
+    };
+  });
+in
 {
   home.packages = with pkgs; [
-    jetbrains.pycharm-professional
+    pycharm
     jetbrains.webstorm
   ];
 
