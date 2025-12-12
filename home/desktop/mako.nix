@@ -17,7 +17,7 @@
       text-color = "#cdd6f4";
       border-color = "#89b4fa";
 
-      default-timeout = 5000;
+      default-timeout = 0;
 
       "urgency=low" = {
         border-color = "#a6adc8";
