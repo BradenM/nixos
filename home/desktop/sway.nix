@@ -16,6 +16,9 @@ in
 
       bars = [{
         command = "${pkgs.waybar}/bin/waybar";
+        hiddenState = "hide";
+        mode = "hide";
+        extraConfig = "modifier Mod4";
       }];
 
       startup = [
@@ -54,7 +57,7 @@ in
           pos = "0 0";
           subpixel = "rgb";
         };
-        "HDMI-A-1" = {
+        "DP-1" = {
           pos = "2560 0";
           mode = "2560x1440@75Hz";
           subpixel = "rgb";
