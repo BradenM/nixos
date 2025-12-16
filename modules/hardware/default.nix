@@ -1,8 +1,10 @@
 {
   imports = [
+    ./android.nix
     ./bluetooth.nix
-    ./nvidia.nix
-    ./system76.nix
     ./cuda.nix
+    ./nvidia.nix
+    ./power.nix
+    ./system76.nix
   ];
 }

@@ -13,6 +13,7 @@
       "audio"
       "input"
       "seat"
+      "adbusers"
     ];
     hashedPasswordFile = "/persist/passwords/braden";
     shell = pkgs.zsh;
