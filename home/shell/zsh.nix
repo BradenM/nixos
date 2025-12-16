@@ -30,6 +30,7 @@
         "helm"
         "terraform"
         "ansible"
+        "systemd"
       ];
     };
 
