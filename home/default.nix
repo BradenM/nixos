@@ -145,5 +145,11 @@
     # utilities
     gnome-keyring
     libsecret
+    procs
+    shell-gpt
+    imagemagick
+    scrcpy
+    v4l-utils
+    ffmpeg
   ];
 }
