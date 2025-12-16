@@ -24,6 +24,7 @@
     ./apps/git.nix
     ./apps/dev-tools.nix
     ./apps/jetbrains.nix
+    ./apps/cad.nix
 
     # scripts
     ./scripts
@@ -43,6 +44,8 @@
       ".cache/nvim"
       ".config/gh"
       ".config/lazygit"
+      ".config/FreeCAD"
+      ".config/cura"
     ];
     allowOther = true;
   };
