@@ -32,8 +32,6 @@
     # qt
     QT_QPA_PLATFORM = "wayland";
     QT_WAYLAND_DISABLE_WINDOWDECORATION = "1";
-    # sdl
-    SDL_VIDEODRIVER = "wayland";
     # clutter
     CLUTTER_BACKEND = "wayland";
     # xdg
