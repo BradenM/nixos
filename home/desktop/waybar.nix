@@ -6,10 +6,13 @@
     systemd.enable = false;
 
     settings = [{
-      layer = "top";
+      ipc = true;
+      id = "main";
+      layer = "overlay";
       position = "top";
       height = 30;
       spacing = 4;
+      output = ["eDP-2" "DP-1"];
 
       modules-left = [
         "sway/workspaces"
@@ -35,7 +38,7 @@
 
       "sway/workspaces" = {
         disable-scroll = false;
-        all-outputs = true;
+        all-outputs = false;
         format = "{name}";
       };
 
