@@ -4,6 +4,9 @@
   hardware.graphics = {
     enable = true;
     enable32Bit = true;
+    extraPackages = with pkgs; [
+      nvidia-vaapi-driver
+    ];
   };
 
   services.xserver.videoDrivers = [ "nvidia" ];
@@ -24,7 +27,6 @@
     NIXOS_OZONE_WL = "1";
     MOZ_ENABLE_WAYLAND = "1";
     QT_QPA_PLATFORM = "wayland";
-    SDL_VIDEODRIVER = "wayland";
     CLUTTER_BACKEND = "wayland";
 
     # NVIDIA-specific Wayland settings
