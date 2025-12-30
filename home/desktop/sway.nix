@@ -18,7 +18,6 @@ in
         command = "${pkgs.waybar}/bin/waybar";
         hiddenState = "hide";
         mode = "hide";
-        extraConfig = "modifier Mod4";
       }];
 
       startup = [
@@ -58,6 +57,11 @@ in
           subpixel = "rgb";
         };
         "DP-1" = {
+          pos = "2560 0";
+          mode = "2560x1440@75Hz";
+          subpixel = "rgb";
+        };
+        "ViewSonic Corporation VX3267U-QHD Y0B251800736" = {
           pos = "2560 0";
           mode = "2560x1440@75Hz";
           subpixel = "rgb";
