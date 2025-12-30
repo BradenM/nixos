@@ -151,5 +151,6 @@
     scrcpy
     v4l-utils
     ffmpeg
+    procfd
   ];
 }
