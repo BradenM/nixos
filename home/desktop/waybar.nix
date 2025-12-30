@@ -8,11 +8,11 @@
     settings = [{
       ipc = true;
       id = "main";
-      layer = "overlay";
+      layer = "bottom";
       position = "top";
-      height = 30;
+      height = 20;
       spacing = 4;
-      output = ["eDP-2" "DP-1"];
+      output = ["eDP-2" "ViewSonic Corporation VX3267U-QHD Y0B251800736" "DP-1"];
 
       modules-left = [
         "sway/workspaces"
@@ -67,7 +67,7 @@
       };
 
       "clock" = {
-        format = "{:%H:%M}";
+        format = "{:%I:%M %p (%H:%M)}";
         format-alt = "{:%Y-%m-%d %H:%M}";
         tooltip-format = "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>";
       };
