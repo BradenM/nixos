@@ -31,6 +31,7 @@
         "terraform"
         "ansible"
         "systemd"
+        "nmap"
       ];
     };
 
