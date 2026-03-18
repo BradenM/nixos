@@ -1,5 +1,9 @@
-{ config, lib, pkgs, ... }:
+{ config, lib, pkgs, inputs, ... }:
 
+let
+  direnvDir = "${inputs.dotfiles}/dotfiles/config/direnv";
+  direnvRcContent = builtins.readFile "${direnvDir}/direnvrc";
+in
 {
   programs.direnv = {
     enable = true;
@@ -13,23 +17,7 @@
       };
     };
 
-    stdlib = ''
-      # layout for poetry projects
-      layout_poetry() {
-        if [[ ! -f pyproject.toml ]]; then
-          log_error 'No pyproject.toml found. Use `poetry new` or `poetry init` to create one first.'
-          exit 2
-        fi
+    stdlib = direnvRcContent;
 
-        local VENV=$(poetry env info --path 2>/dev/null || true)
-        if [[ -z $VENV || ! -d $VENV/bin ]]; then
-          poetry install
-          VENV=$(poetry env info --path)
-        fi
-        export VIRTUAL_ENV=$VENV
-        export POETRY_ACTIVE=1
-        PATH_add "$VENV/bin"
-      }
-    '';
   };
 }
