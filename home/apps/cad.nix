@@ -2,7 +2,7 @@
 
 {
   home.packages = with pkgs; [
-    freecad-wayland
+    # freecad-wayland
     cura-appimage
   ];
 }
