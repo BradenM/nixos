@@ -12,7 +12,7 @@
       position = "top";
       height = 20;
       spacing = 4;
-      output = ["eDP-2" "ViewSonic Corporation VX3267U-QHD Y0B251800736" "DP-1"];
+      output = ["eDP-2" "Sceptre Tech Inc Sceptre F27 0x00000001" "ViewSonic Corporation VX3267U-QHD Y0B251800728"];
 
       modules-left = [
         "sway/workspaces"
