@@ -1,17 +1,17 @@
 { config, lib, pkgs, ... }:
 
-let
-  pycharm = pkgs.jetbrains.pycharm-professional.overrideAttrs (old: rec {
-    version = "2025.3";
-    src = pkgs.fetchurl {
-      url = "https://download.jetbrains.com/python/pycharm-professional-${version}.tar.gz";
-      sha256 = "sha256-pBDJxYNO3hY3MyXqIbhQ4wlVfbXZ3Mo2dMr5LqfFvwU=";
-    };
-  });
-in
+# let
+#   pycharm = pkgs.jetbrains.pycharm-professional.overrideAttrs (old: rec {
+#     version = "2025.3.2";
+#     src = pkgs.fetchurl {
+#       url = "https://download.jetbrains.com/python/pycharm-professional-${version}.tar.gz";
+#       sha256 = "sha256-YLXO+YhulYfkOSR6fjZKuppmPa+uLqvP/E4NxAm7o8Q=";
+#     };
+#   });
+# in
 {
   home.packages = with pkgs; [
-    pycharm
+    jetbrains.pycharm
     jetbrains.webstorm
   ];
 
@@ -48,6 +48,9 @@ in
 
     " Leader
     let mapleader=" "
+
+    " Handlers
+    sethandler <C-q> n:ide
 
     " Key remappings - black hole register for change
     nnoremap c "_c
@@ -100,6 +103,9 @@ in
     map <leader>p <Action>(ReformatCode)
     map <leader>c <Action>(ShowPopupMenu)
     map <leader>j <Action>(FileStructurePopup)
+    map <leader>q <Action>(FileStructurePopup)
+    map <leader>v <Action>(QuickPreview)
+    map <leader>i <Action>(QuickTypeDefinition)
 
     if &ide =~? 'webstorm'
         map <leader>p <Action>(ReformatWithPrettierAction)<CR><Action>(ReformatCode)
