@@ -39,9 +39,10 @@
     tldr
     neofetch
     tokei
+    claude-code
+    opencode
 
     # container tools
-    docker-compose
     kubectl
     k9s
 
