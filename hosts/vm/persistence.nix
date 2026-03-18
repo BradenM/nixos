@@ -2,6 +2,7 @@
 
 {
   fileSystems."/persist".neededForBoot = true;
+  fileSystems."/home".neededForBoot = true;
 
   # blank snapshot rollback service (same as real hardware, but no LUKS)
   boot.initrd.systemd.services.rollback = {

@@ -1,8 +1,9 @@
 { config, lib, pkgs, ... }:
 
 {
-  # ensure persist is available early in boot
+  # ensure persist and home are available early in boot
   fileSystems."/persist".neededForBoot = true;
+  fileSystems."/home".neededForBoot = true;
 
   # allow FUSE mounts with allow_other (needed for home-manager impermanence)
   programs.fuse.userAllowOther = true;
@@ -54,7 +55,7 @@
       "/var/lib/systemd/coredump"
       "/var/lib/bluetooth"
       "/var/lib/system76-power"
-
+      "/var/lib/docker"
     ];
 
     files = [

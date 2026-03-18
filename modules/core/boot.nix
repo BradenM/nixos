@@ -12,7 +12,7 @@
       timeout = 3;
     };
 
-    kernelPackages = pkgs.linuxPackages_latest;
+    kernelPackages = pkgs.linuxPackages_6_18;
 
     # TODO: make nvidia configurable here 
 

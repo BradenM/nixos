@@ -37,7 +37,7 @@
   };
 
   # persistence for impermanence
-  home.persistence."/persist/home/braden" = {
+  home.persistence."/persist" = {
     directories = [
       ".local/share/nvim"
       ".local/state/nvim"
@@ -47,7 +47,6 @@
       ".config/FreeCAD"
       ".config/cura"
     ];
-    allowOther = true;
   };
 
   programs.home-manager.enable = true;
