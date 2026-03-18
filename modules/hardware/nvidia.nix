@@ -6,6 +6,7 @@
     enable32Bit = true;
     extraPackages = with pkgs; [
       nvidia-vaapi-driver
+      intel-media-driver
     ];
   };
 
@@ -18,7 +19,7 @@
     powerManagement.finegrained = false;
     # see:
     # https://github.com/NixOS/nixpkgs/issues/467814#issuecomment-3620802561
-    package = config.boot.kernelPackages.nvidiaPackages.beta;
+    # package = config.boot.kernelPackages.nvidiaPackages.beta;
     nvidiaSettings = true;
   };
 
