@@ -159,5 +159,6 @@
     v4l-utils
     ffmpeg
     procfd
+    usbutils
   ];
 }
