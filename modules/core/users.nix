@@ -14,6 +14,9 @@
       "input"
       "seat"
       "adbusers"
+      "plugdev"
+      "dialout"
+      "docker"
     ];
     hashedPasswordFile = "/persist/passwords/braden";
     shell = pkgs.zsh;
