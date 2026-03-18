@@ -114,7 +114,7 @@
         };
         pagers = [{
           colorArg = "always";
-          pager = "delta --dark --paging=never --diff-so-fancy --line-numbers";
+          pager = "delta --dark --paging=never --blame-code-style=syntax --line-numbers";
           useConfig = false;
         }];
       };
