@@ -11,6 +11,10 @@
       enable = true;
       plugins = [
         "git"
+        "gitfast"
+        "git-extras"
+        "git-escape-magic"
+        "gh"
         "docker"
         "docker-compose"
         "kubectl"
