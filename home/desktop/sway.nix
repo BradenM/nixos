@@ -66,6 +66,16 @@ in
           mode = "2560x1440@75Hz";
           subpixel = "rgb";
         };
+        "ViewSonic Corporation VX3267U-QHD Y0B251800728" = {
+          pos = "5120 0";
+          mode = "2560x1440@75Hz";
+          subpixel = "rgb";
+        };
+        "Sceptre Tech Inc Sceptre F27 0x00000001" = {
+            pos = "5120 0";
+            mode = "1920x1080@75Hz";
+            subpixel = "rgb";
+        };
       };
 
       gaps = {
