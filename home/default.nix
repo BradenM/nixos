@@ -125,7 +125,15 @@
   home.packages = with pkgs; [
     # browsers
     firefox-bin
-    brave
+    (pkgs.symlinkJoin {
+      name = "brave";
+      paths = [ brave ];
+      buildInputs = [ makeWrapper ];
+      postBuild = ''
+        wrapProgram $out/bin/brave \
+          --set LIBVA_DRIVER_NAME iHD
+      '';
+    })
 
     # communication
     slack
