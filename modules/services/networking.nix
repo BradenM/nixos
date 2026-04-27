@@ -5,8 +5,8 @@
 
   networking.firewall = {
     enable = true;
-    allowedTCPPorts = [ 22 ];
-    allowedUDPPorts = [ ];
+    allowedTCPPorts = [ 22 8080 ];
+    allowedUDPPorts = [ 69 ];
   };
 
   services.openssh = {
