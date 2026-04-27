@@ -13,8 +13,8 @@
       nil
       lua-language-server
       pyright
-      nodePackages.typescript-language-server
-      nodePackages.vscode-langservers-extracted
+      typescript-language-server
+      vscode-langservers-extracted
       rust-analyzer
       gopls
       marksman
@@ -24,7 +24,7 @@
       black
       isort
       nixpkgs-fmt
-      nodePackages.prettier
+      prettier
       shfmt
 
       # linters
