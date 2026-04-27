@@ -12,11 +12,15 @@
     jq
     yq-go
     httpie
+    lsof
 
     # development utilities
     gnumake
     cmake
     pkg-config
+    nodejs
+    uv
+    python3
 
     # archive tools
     unzip
@@ -29,6 +33,9 @@
     nmap
     dig
 
+    # serial tools
+    tio
+
     # monitoring
     htop
     btop
@@ -37,10 +44,14 @@
     # misc utilities
     tree
     tldr
-    neofetch
+    fastfetch
     tokei
     claude-code
     opencode
+    libreoffice
+
+    # images
+    satty
 
     # container tools
     kubectl
