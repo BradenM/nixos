@@ -36,27 +36,32 @@
                   subvolumes = {
                     "@root" = {
                       mountpoint = "/";
-                      mountOptions = [ "compress=zstd" "noatime" ];
+                      mountOptions = [ "compress=zstd" "noatime" "autodefrag" "ssd" "discard=async" "space_cache=v2" "commit=120" ];
                     };
 
                     "@home" = {
                       mountpoint = "/home";
-                      mountOptions = [ "compress=zstd" "noatime" ];
+                      mountOptions = [ "compress=zstd" "noatime" "autodefrag" "ssd" "discard=async" "space_cache=v2" "commit=120" ];
                     };
 
                     "@nix" = {
                       mountpoint = "/nix";
-                      mountOptions = [ "compress=zstd" "noatime" ];
+                      mountOptions = [ "compress=zstd" "noatime" "autodefrag" "ssd" "discard=async" "space_cache=v2" "commit=120" ];
                     };
 
                     "@persist" = {
                       mountpoint = "/persist";
-                      mountOptions = [ "compress=zstd" "noatime" ];
+                      mountOptions = [ "compress=zstd" "noatime" "autodefrag" "ssd" "discard=async" "space_cache=v2" "commit=120" ];
                     };
 
                     "@log" = {
                       mountpoint = "/var/log";
-                      mountOptions = [ "compress=zstd" "noatime" ];
+                      mountOptions = [ "compress=zstd" "noatime" "autodefrag" "ssd" "discard=async" "space_cache=v2" "commit=120" ];
+                    };
+
+                    "@build" = {
+                      mountpoint = "/build";
+                      mountOptions = [ "compress=zstd" "noatime" "autodefrag" "ssd" "discard=async" "space_cache=v2" "commit=120" ];
                     };
 
                     "@swap" = {
