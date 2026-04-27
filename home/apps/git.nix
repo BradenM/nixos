@@ -81,7 +81,7 @@
       navigate = true;
       side-by-side = false;
       line-numbers = true;
-      syntax-theme = "Catppuccin Mocha";
+      syntax-theme = "Monokai Extended";
     };
   };
 
