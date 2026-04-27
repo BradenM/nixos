@@ -1,17 +1,17 @@
 { config, lib, pkgs, ... }:
 
-# let
-#   pycharm = pkgs.jetbrains.pycharm-professional.overrideAttrs (old: rec {
-#     version = "2025.3.2";
-#     src = pkgs.fetchurl {
-#       url = "https://download.jetbrains.com/python/pycharm-professional-${version}.tar.gz";
-#       sha256 = "sha256-YLXO+YhulYfkOSR6fjZKuppmPa+uLqvP/E4NxAm7o8Q=";
-#     };
-#   });
-# in
+ let
+   pycharm = pkgs.jetbrains.pycharm.overrideAttrs (old: rec {
+     version = "2025.3.4";
+     src = pkgs.fetchurl {
+       url = "https://download.jetbrains.com/python/pycharm-professional-${version}.tar.gz";
+       sha256 = "sha256-B2CHbDIsnXJp5hwle8jOQB/4NOSJI/umfVWYUbXOSlI=";
+     };
+   });
+ in
 {
   home.packages = with pkgs; [
-    jetbrains.pycharm
+    pycharm
     jetbrains.webstorm
   ];
 
