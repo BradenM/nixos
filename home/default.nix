@@ -10,6 +10,7 @@
 
     # terminal
     ./terminal/alacritty.nix
+    ./terminal/tmux.nix
 
     # editor
     ./editor/neovim.nix
@@ -45,6 +46,7 @@
       ".config/gh"
       ".config/lazygit"
       ".config/FreeCAD"
+      ".tmux/resurrect"
       ".config/cura"
     ];
   };
