@@ -19,11 +19,8 @@
     # required for impermanence rollback in initrd
     initrd.systemd.enable = true;
 
-    # NVIDIA kernel parameters
-    kernelParams = [
-      "nvidia_drm.modeset=1"
-      "nvidia_drm.fbdev=1"
-    ];
+    # kernel parameters
+    kernelParams = [ "intel_iommu=on" "iommu=pt" ];
 
     # early KMS for NVIDIA
     initrd.kernelModules = [
